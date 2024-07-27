@@ -1,0 +1,2 @@
+rails: bin/rails s
+webpack: NODE_OPTIONS=--openssl-legacy-provider bin/webpack-dev-server

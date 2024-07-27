@@ -20,4 +20,4 @@
           %td.text-end.pe
             %span
               = link_to 'Edit', edit_user_path(user), class: 'btn btn-outline-info me-3'
-              = link_to 'Remove', '#', class: 'button btn btn-outline-danger'
+              = link_to 'Remove', '#', class: 'button btn btn-outline-danger', data: { reflex: 'click->UserReflex#destroy', signed_id: user.to_sgid.to_s }

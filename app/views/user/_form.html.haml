@@ -1,46 +1,44 @@
-.row
-  .col-2
-  .col-8
-    .pt-5
-      = simple_form_for(user,
-                        url: '#' ) do |f|
-        .row
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :first_name, class: 'form-control'
+= simple_form_for(user,
+                  id: dom_id(user),
+                  data: { remote: true, reflex: "input->UserReflex#save", controller: "user-forms", action: "submit->user-forms#onSubmit", signed_id: user.to_sgid.to_s },
+                  method: :put,
+                  url: '#' ) do |f|
+  .row
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :first_name, class: 'form-control'
 
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :last_name, class: 'form-control'
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :last_name, class: 'form-control'
 
-        .mb-2.pt-2
-          = f.input :middle_name, class: 'form-control'
+  .mb-2.pt-2
+    = f.input :middle_name, class: 'form-control' 
+  .row
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :phone_number, class: 'form-control'
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :email, class: 'form-control'
+  .mb-2.pt-2
+    = f.input :social_security_number, class: 'form-control', input_html: { data: { controller: "ssn-masks" } }
+  .mb-2.pt-2
+    = f.input :country, as: :select, required: false,
+          collection: ['United States', 'Other'], include_blank: false,
+          selected: f.object.country ? f.object.country : 'United States',
+          input_html: { class: 'form-select' }
 
-        .row
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :phone_number, class: 'form-control'
+  - if f.object.country == "Other"
+    .mb-2.pt-2
+      = f.input :other_country, as: :string, class: 'form-control'
+  .mb-2.pt-2
+    = f.input :address, class: 'form-control'
+  .row
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :city, class: 'form-control'
 
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :email, class: 'form-control'
+    .col-12.col-lg-6.mb-3.pt-2
+      = f.input :state, class: 'form-control'
 
-        .mb-2.pt-2
-          = f.input :social_security_number, class: 'form-control'
+  .mb-2.pt-2
+    = f.input :zip_code, label: "Zip code", class: 'form-select'
 
-        .mb-2.pt-2
-          = f.input :country, as: :select, required: false,
-                collection: ['United States', 'Other'], include_blank: false,
-                selected: f.object.country ? f.object.country : 'United States',
-                input_html: { class: 'form-select' }
-
-        .mb-2.pt-2
-          = f.input :address, class: 'form-control'
-        .row
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :city, class: 'form-control'
-
-          .col-12.col-lg-6.mb-3.pt-2
-            = f.input :state, class: 'form-control'
-
-        .mb-2.pt-2
-          = f.input :zip_code, label: "Zip code", class: 'form-select'
-
-    .mb-2.text-end
-      = link_to 'Back', root_path, class: 'button btn btn-primary'
+.mb-2.text-end
+= link_to 'Back', root_path, class: 'button btn btn-primary'

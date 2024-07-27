@@ -11,6 +11,7 @@ import "channels"
 import "controllers"
 import $ from 'jquery';
 import debounced from 'debounced'
+
 debounced.initialize()
 
 Rails.start()

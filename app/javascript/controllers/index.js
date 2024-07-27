@@ -11,5 +11,16 @@ import CableReady from 'cable_ready'
 const application = Application.start()
 const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
-StimulusReflex.initialize(application, { consumer, controller, isolate: true })
-StimulusReflex.debug = process.env.RAILS_ENV === 'development'
+// StimulusReflex.initialize(application, { consumer, controller, isolate: true })
+// StimulusReflex.debug = process.env.RAILS_ENV === 'development'
+
+
+StimulusReflex.initialize(application, {
+  applicationController: controller,
+  consumer,
+  isolate: true,
+});
+
+// consider removing these options in production
+StimulusReflex.debug = true
+// end remove
