@@ -1,6 +1,6 @@
 = simple_form_for(user,
                   id: dom_id(user),
-                  data: { remote: true, reflex: "input->UserReflex#save", controller: "user-forms", action: "submit->user-forms#onSubmit", signed_id: user.to_sgid.to_s },
+                  data: { remote: true, reflex: "debounced:input->UserReflex#save", controller: "user-forms", action: "submit->user-forms#onSubmit", signed_id: user.to_sgid.to_s },
                   method: :put,
                   url: '#' ) do |f|
   .row

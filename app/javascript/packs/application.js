@@ -12,7 +12,7 @@ import "controllers"
 import $ from 'jquery';
 import debounced from 'debounced'
 
-debounced.initialize()
+debounced.initialize(debounced.defaultEventNames, { wait: 1000, leading: true, trailing: false });
 
 Rails.start()
 ActiveStorage.start()
